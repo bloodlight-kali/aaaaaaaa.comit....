@@ -4,12 +4,12 @@ public class test_calc {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Введите арифметическое выражение, например 2 + 3:");
         String input = scanner.nextLine();
-        input = addSpacesAroundOperators(input);
+        input = Operators(input);
         String result = calc(input);
         System.out.println("Результат: " + result);
         scanner.close();
     }
-    private static String addSpacesAroundOperators(String input) {
+    private static String Operators(String input) {
         input = input.replaceAll("([\\+\\-\\*\\/])", " $1 ");
         input = input.replaceAll("\\s+", " ");
         return input;
@@ -72,7 +72,7 @@ public class test_calc {
                     System.err.println("ошибка - " + e.getMessage());
                     System.exit(0);
                 }
-            return " ";
+            return null;
         }
         return String.format("%.0f", result);
     }
