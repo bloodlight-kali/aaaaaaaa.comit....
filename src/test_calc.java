@@ -4,20 +4,17 @@ public class test_calc {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Введите арифметическое выражение, например 2 + 3:");
         String input = scanner.nextLine();
-        if (input.contains(" ")) {
-            String result = calc(input);
-            System.out.println("Результат: " + result);
-        } else {
-            String formattedInput = formatInput(input);
-            String result = calc(formattedInput);
-            System.out.println("Результат: " + result);
-        }
+        input = addSpacesAroundOperators(input);
+        System.out.println("Исправленное выражение: " + input);
+        String result = calc(input);
+        System.out.println("Результат: " + result);
 
         scanner.close();
     }
 
-    private static String formatInput(String input) {
+    private static String addSpacesAroundOperators(String input) {
         input = input.replaceAll("([\\+\\-\\*\\/])", " $1 ");
+        input = input.replaceAll("\\s+", " ");
         return input;
     }
     private static String calc(String input) throws Exception{
@@ -71,7 +68,14 @@ public class test_calc {
                 result = num1 / num2;
                 break;
             default:
-                throw new Exception("Неверный оператор");
+                try {
+                    throw new Exception("Неверный оператор");
+                }
+                catch (Exception e){
+                    System.err.println("ошибка - " + e.getMessage());
+                    System.exit(0);
+                }
+            return " ";
         }
         return String.format("%.0f", result);
     }
