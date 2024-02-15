@@ -5,13 +5,10 @@ public class test_calc {
         System.out.println("Введите арифметическое выражение, например 2 + 3:");
         String input = scanner.nextLine();
         input = addSpacesAroundOperators(input);
-        System.out.println("Исправленное выражение: " + input);
         String result = calc(input);
         System.out.println("Результат: " + result);
-
         scanner.close();
     }
-
     private static String addSpacesAroundOperators(String input) {
         input = input.replaceAll("([\\+\\-\\*\\/])", " $1 ");
         input = input.replaceAll("\\s+", " ");
